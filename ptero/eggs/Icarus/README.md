@@ -26,4 +26,6 @@ The Wine 11 egg uses one additional variable:
 - `WINE_PROCESS_MATCH`  
   Process name used to detect the real server PID  
   Default:
-```IcarusServer-Win64-Shipping.exe
+```
+IcarusServer-Win64-Shipping.exe
+```
