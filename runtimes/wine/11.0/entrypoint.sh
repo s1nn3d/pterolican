@@ -129,7 +129,7 @@ if [ ! -z "${WINE_PROCESS_MATCH:-}" ]; then
     if [ -z "$SERVER_PID" ]; then
         echo "ERROR: Server process not found after ${PID_WAIT_SECONDS}s."
         echo "--- processes (wine/wineserver/server) ---"
-        ps -eo pid,args | grep -E 'wine|wineserver|IcarusServer|Shipping\.exe' | grep -v grep || true
+        ps -eo pid,args | grep -E 'wine|wineserver' | grep -v grep || true
         exit 1
     fi
 
