@@ -84,9 +84,9 @@
             "name": "Wine Process Match",
             "description": "Process match string used to find the real server PID on Wine 11+ (pgrep -f).",
             "env_variable": "WINE_PROCESS_MATCH",
-            "default_value": "IcarusServer-Win64-Shipping\\.exe.*-PORT=${SERVER_PORT}",
-            "user_viewable": false,
-            "user_editable": false,
+            "default_value": "IcarusServer-Win64-Shipping.exe",
+            "user_viewable": true,
+            "user_editable": true,
             "rules": "required|string",
             "field_type": "text"
         },
