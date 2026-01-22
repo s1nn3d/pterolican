@@ -1,38 +1,39 @@
-# Wine 11.0 Pterodactyl Runtime
+# Wine 11.0 Runtime (Pterodactyl / Pelican)
 
-This is a **Wine 11–pinned runtime image** intended for use with **Pterodactyl / Pelican** game servers.
+This is a **Wine 11–pinned runtime image** for Pterodactyl / Pelican game servers.
 
-It exists because **Wine 11 changed its process model**, which breaks the traditional
-“run `wine` in the foreground” assumption used by many existing eggs and runtimes.
+It exists because **Wine 11 changed its process behavior**, which can cause
+Wings to think a server exited when it actually didn’t.
 
-This runtime fixes that at the **image level**, so eggs can remain clean and readable.
+The fix is handled in the **container entrypoint**, not in the egg.
 
----
+## What this runtime does
 
-## What this image does
-
-- Pins **Wine stable 11.0.x** (Debian Bookworm)
-- Handles Wine 11’s **PID hand-off behavior**
-- Prevents Wings restart loops caused by early launcher exit
-- Optionally:
-  - tracks the *real* server process via `pgrep`
-  - tails a server log file into the Pterodactyl console
-
-All lifecycle logic lives in the **entrypoint**, not in the egg startup command.
-
----
+- Pins **Wine stable 11.0.x** on Debian Bookworm
+- Works around Wine 11 PID hand-off issues
+- Prevents restart loops in Wings
+- Allows clean, readable egg startup commands
+- Can optionally:
+  - track the real server process
+  - stream a log file into the panel console
 
 ## Intended usage
 
-This image is meant to be used with **Wine-11-specific eggs**.
+Use this image with **Wine 11–specific eggs**.
 
-The egg should:
+Eggs should:
 - use `wine` (not `wine64`)
-- provide a normal startup command (no bash logic)
+- keep startup commands simple
 - optionally set:
-  - `WINE_PROCESS_MATCH` – process matcher for the real server
-  - `LOG_FILE` – log file to stream into the console
+  - `WINE_PROCESS_MATCH`
+  - `LOG_FILE`
 
-Example startup (egg):
-```bash
-wine ./Server.exe -log
+## Notes
+
+- A Wine 10 runtime is kept separately as a fallback.
+- This image is pinned for reproducibility.
+- Future Wine versions may require a new runtime tag.
+
+## License
+
+MIT
