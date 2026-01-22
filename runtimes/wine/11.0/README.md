@@ -7,6 +7,8 @@ Wings to think a server exited when it actually didn’t.
 
 The fix is handled in the **container entrypoint**, not in the egg.
 
+Image: ghcr.io/s1nn3d/ptero-wine:11.0
+
 ## What this runtime does
 
 - Pins **Wine stable 11.0.x** on Debian Bookworm
